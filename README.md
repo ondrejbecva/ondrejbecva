@@ -5,7 +5,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-en-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/hero-en-light.svg">
-  <img alt="Ondřej Bečva — full-stack developer &amp; tech lead · Břeclav, Czechia" src="assets/hero-en-dark.svg" width="100%">
+  <img alt="Ondřej Bečva — software engineer &amp; tech lead, AI in daily practice · Břeclav, Czechia" src="assets/hero-en-dark.svg" width="100%">
 </picture>
 
 </div>
@@ -17,7 +17,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/whoami-en-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/whoami-en-light.svg">
-  <img alt="$ ondrej --whoami — Full-stack developer and tech lead from Břeclav, freelancing since 2020. Websites, e-shops, custom apps, CRM and AI automation, built to the brief. One accountable person from the first call to launch. AI is part of the toolkit, not a sales slogan." src="assets/whoami-en-dark.svg" width="100%">
+  <img alt="$ ondrej --whoami — Software engineer and tech lead from Břeclav, freelancing since 2020. Websites, e-shops, custom apps, CRM and AI automation, built to the brief. One accountable person from the first call to launch. AI is part of the toolkit, not a sales slogan." src="assets/whoami-en-dark.svg" width="100%">
 </picture>
 
 </div>
@@ -46,15 +46,13 @@
 
 ## ◇ &nbsp;How I work
 
-```diff
-+ The price is fixed. If the budget has to change, you hear it at once — nothing changes without your approval
-+ No agreement on price or approach, no start, nothing to pay
-+ Regular calls about the project and demos of work in progress — we deal straight
-+ The brief first, the design second
-+ Measure before automating: keep what saves time, switch off what does not
-+ Content you manage yourself, without waiting for a developer
-- Hand-offs between salesperson, designer and developer
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/principles-en-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/principles-en-light.svg">
+  <img alt="Fixed price: a budget change needs your approval. No agreement, no start, nothing to pay. Straight talk: regular calls and demos. The brief before the design. Measure, then automate. One person, no hand-offs." src="assets/principles-en-dark.svg" width="100%">
+</picture>
+
+<br>
 
 <details>
 <summary><b>◇ &nbsp;Experience</b></summary>
