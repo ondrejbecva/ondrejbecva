@@ -114,7 +114,8 @@ function cardGrid(items, t, mark) {
   const columns = 2
   const gap = 16
   const cardW = (W - gap) / columns
-  const cardH = 116
+  // Even padding: 26 above the icon row and about as much below the second text line.
+  const cardH = 134
   const rows = Math.ceil(items.length / columns)
   const H = rows * cardH + (rows - 1) * gap
   const body = items
@@ -124,9 +125,9 @@ function cardGrid(items, t, mark) {
       const lines = wrap(item.text, 58).slice(0, 2)
       return (
         `<path d="${panel(x, y, cardW, cardH, 16)}" fill="${t.card}" stroke="${t.line}"/>` +
-        mark(item, x + 26, y + 24) +
-        `<text x="${x + 76}" y="${y + 47}" font-family="${SANS}" font-size="17" font-weight="700" fill="${t.ink}">${escape(item.title)}</text>` +
-        lines.map((line, j) => `<text x="${x + 26}" y="${y + 80 + j * 20}" font-family="${SANS}" font-size="14" fill="${t.muted}">${escape(line)}</text>`).join('')
+        mark(item, x + 26, y + 26) +
+        `<text x="${x + 76}" y="${y + 50}" font-family="${SANS}" font-size="17" font-weight="700" fill="${t.ink}">${escape(item.title)}</text>` +
+        lines.map((line, j) => `<text x="${x + 26}" y="${y + 88 + j * 21}" font-family="${SANS}" font-size="14" fill="${t.muted}">${escape(line)}</text>`).join('')
       )
     })
     .join('')

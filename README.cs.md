@@ -53,6 +53,7 @@
 </picture>
 
 <br>
+<br>
 
 <details>
 <summary><b>◇ &nbsp;Praxe</b></summary>
@@ -75,6 +76,13 @@ Specializuji se na WordPress, Laravel a JavaScriptové frameworky (Vue.js, React
 ## ◇ &nbsp;Kontakt
 
 <div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/robot-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="assets/robot-light.gif">
+  <img alt="Robot z ondrejbecva.cz mává" src="assets/robot-dark.gif" width="180">
+</picture>
+<br>
 
 <a href="https://www.ondrejbecva.cz"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-cs-dark.svg">
