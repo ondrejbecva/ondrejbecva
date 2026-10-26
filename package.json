@@ -1,0 +1,12 @@
+{
+  "name": "ondrejbecva-github-profile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "lucide": "0.468.0",
+    "simple-icons": "^16.28.0"
+  }
+}
