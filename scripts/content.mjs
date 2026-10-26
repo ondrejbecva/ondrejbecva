@@ -5,12 +5,12 @@ export const LANGUAGES = ['en', 'cs']
 
 export const TEXT = {
   en: {
-    role: 'Full-stack developer & tech lead',
-    place: 'Břeclav, Czechia',
+    role: 'Software engineer & tech lead',
+    place: 'AI in daily practice · Břeclav, Czechia',
     label: 'Websites · e-shops · apps · AI automation · CRM',
     prompt: 'ondrej --whoami',
     whoami: [
-      'Full-stack developer and tech lead from Břeclav. Freelancing since 2020.',
+      'Software engineer and tech lead from Břeclav. Freelancing since 2020.',
       'Websites, e-shops, custom apps, CRM and AI automation, built to the brief.',
       'One accountable person from the first call to launch. No hand-offs.',
       'AI is part of my toolkit, not a sales slogan. It shortens the routine.',
@@ -23,16 +23,24 @@ export const TEXT = {
       { icon: 'Contact', title: 'CRM', text: 'Customer and sales records that follow how the company really works.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Custom themes and plugins, care and maintenance.' },
     ],
+    principles: [
+      { title: 'Fixed price', text: 'If the budget has to change, you hear it at once. Nothing changes without your approval.' },
+      { title: 'No agreement, no start', text: 'If we do not agree on price or approach, work does not start and you pay nothing.' },
+      { title: 'Straight talk', text: 'Regular calls about the project and demos of work in progress.' },
+      { title: 'The brief before the design', text: 'First what the work should do and for whom, then how it looks.' },
+      { title: 'Measure, then automate', text: 'Keep what saves time, switch off what does not.' },
+      { title: 'One person, no hand-offs', text: 'You talk to the one who builds it, not to a chain of salesperson and designer.' },
+    ],
     groups: { Frontend: 'Frontend', 'Backend a CMS': 'Backend & CMS', 'Databáze': 'Databases', 'Nástroje a provoz': 'Tools & ops', 'Testování': 'Testing', AI: 'AI' },
     chips: { site: 'ondrejbecva.cz', linkedin: 'LinkedIn', email: 'mail@ondrejbecva.cz' },
   },
   cs: {
-    role: 'Full-stack vývojář a tech lead',
-    place: 'Břeclav',
+    role: 'Software engineer a tech lead',
+    place: 'AI v každodenní praxi · Břeclav',
     label: 'Weby · e-shopy · aplikace · AI automatizace · CRM',
     prompt: 'ondrej --whoami',
     whoami: [
-      'Full-stack vývojář a tech lead z Břeclavi. Na volné noze od roku 2020.',
+      'Software engineer a tech lead z Břeclavi. Na volné noze od roku 2020.',
       'Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání.',
       'Jeden odpovědný člověk od prvního hovoru po spuštění. Bez předávání.',
       'AI je součást mého nářadí, ne prodejní slogan. Zkracuje rutinu.',
@@ -44,6 +52,14 @@ export const TEXT = {
       { icon: 'Workflow', title: 'AI a automatizace', text: 'Opakovaná práce zautomatizovaná a změřená. AI jen tam, kde šetří čas.' },
       { icon: 'Contact', title: 'CRM', text: 'Evidence zákazníků a obchodu podle toho, jak firma opravdu funguje.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Šablony a pluginy na míru, správa a údržba.' },
+    ],
+    principles: [
+      { title: 'Pevná cena', text: 'Pokud by bylo potřeba rozpočet upravit, dozvíte se to hned. Bez vašeho schválení se nic nemění.' },
+      { title: 'Bez dohody se nezačíná', text: 'Když se na ceně nebo postupu nedohodneme, práce nezačne a nic neplatíte.' },
+      { title: 'Na rovinu', text: 'Pravidelné hovory o stavu projektu a ukázky rozpracované práce.' },
+      { title: 'Zadání před designem', text: 'Nejdřív co má práce dělat a pro koho, potom jak vypadá.' },
+      { title: 'Změřit, pak automatizovat', text: 'Co šetří čas, zůstane. Co nešetří, vypneme.' },
+      { title: 'Jeden člověk, bez předávání', text: 'Mluvíte s tím, kdo to staví — ne přes obchodníka a designéra.' },
     ],
     groups: { Frontend: 'Frontend', 'Backend a CMS': 'Backend a CMS', 'Databáze': 'Databáze', 'Nástroje a provoz': 'Nástroje a provoz', 'Testování': 'Testování', AI: 'AI' },
     chips: { site: 'ondrejbecva.cz', linkedin: 'LinkedIn', email: 'mail@ondrejbecva.cz' },

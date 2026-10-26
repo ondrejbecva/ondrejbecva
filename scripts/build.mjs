@@ -106,29 +106,39 @@ function whoami(text, t) {
   return svg(H, body, `$ ${text.prompt} — ${text.whoami.join(' ')}`)
 }
 
-function services(text, t) {
-  const columns = 3
-  const gap = 18
-  const cardW = (W - gap * (columns - 1)) / columns
-  const cardH = 168
-  const rows = Math.ceil(text.services.length / columns)
+/**
+ * A grid of cards, two to a row: the icon tile (or the studio diamond) beside the title, the text under it. Two wide
+ * columns keep every text to two lines, so the cards are even (three narrow ones wrapped some texts to three).
+ */
+function cardGrid(items, t, mark) {
+  const columns = 2
+  const gap = 16
+  const cardW = (W - gap) / columns
+  const cardH = 116
+  const rows = Math.ceil(items.length / columns)
   const H = rows * cardH + (rows - 1) * gap
-  const body = text.services
-    .map((service, i) => {
+  const body = items
+    .map((item, i) => {
       const x = (i % columns) * (cardW + gap)
       const y = Math.floor(i / columns) * (cardH + gap)
-      const lines = wrap(service.text, 36)
+      const lines = wrap(item.text, 58).slice(0, 2)
       return (
         `<path d="${panel(x, y, cardW, cardH, 16)}" fill="${t.card}" stroke="${t.line}"/>` +
-        `<path d="${panel(x + 24, y + 24, 36, 36, 7)}" fill="${t.tile}"/>` +
-        lucideIcon(service.icon, x + 33, y + 33, 18, ACCENT) +
-        `<text x="${x + 24}" y="${y + 92}" font-family="${SANS}" font-size="17" font-weight="700" fill="${t.ink}">${escape(service.title)}</text>` +
-        lines.map((line, j) => `<text x="${x + 24}" y="${y + 118 + j * 19}" font-family="${SANS}" font-size="13.5" fill="${t.muted}">${escape(line)}</text>`).join('')
+        mark(item, x + 26, y + 24) +
+        `<text x="${x + 76}" y="${y + 47}" font-family="${SANS}" font-size="17" font-weight="700" fill="${t.ink}">${escape(item.title)}</text>` +
+        lines.map((line, j) => `<text x="${x + 26}" y="${y + 80 + j * 20}" font-family="${SANS}" font-size="14" fill="${t.muted}">${escape(line)}</text>`).join('')
       )
     })
     .join('')
-  return svg(H, body, text.services.map((service) => `${service.title}: ${service.text}`).join(' '))
+  return svg(H, body, items.map((item) => `${item.title}: ${item.text}`).join(' '))
 }
+
+const services = (text, t) =>
+  cardGrid(text.services, t, (service, x, y) => `<path d="${panel(x, y, 36, 36, 7)}" fill="${t.tile}"/>` + lucideIcon(service.icon, x + 9, y + 9, 18, ACCENT))
+
+// The site's mark for a principle: the diamond with a smaller one cut out (SiteSymbol on ondrejbecva.cz).
+const principles = (text, t) =>
+  cardGrid(text.principles, t, (item, x, y) => `<path transform="translate(${x + 6} ${y + 6}) scale(2)" fill-rule="evenodd" fill="${ACCENT}" d="M6 0l6 6-6 6-6-6 6-6zm0 3.4L2.6 6 6 8.6 9.4 6 6 3.4z"/>`)
 
 function stack(text, t) {
   const padding = 30
@@ -180,6 +190,7 @@ for (const language of LANGUAGES) {
     write(`hero-${suffix}`, hero(text, t))
     write(`whoami-${suffix}`, whoami(text, t))
     write(`services-${suffix}`, services(text, t))
+    write(`principles-${suffix}`, principles(text, t))
     write(`stack-${suffix}`, stack(text, t))
     write(`chip-site-${suffix}`, chip(text.chips.site, (x, y, s) => lucideIcon('Globe', x, y, s, ACCENT), t))
     write(`chip-linkedin-${suffix}`, chip(text.chips.linkedin, (x, y, s) => lucideIcon('Linkedin', x, y, s, ACCENT), t))

@@ -5,7 +5,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/hero-cs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/hero-cs-light.svg">
-  <img alt="Ondřej Bečva — full-stack vývojář a tech lead · Břeclav" src="assets/hero-cs-dark.svg" width="100%">
+  <img alt="Ondřej Bečva — software engineer a tech lead, AI v každodenní praxi · Břeclav" src="assets/hero-cs-dark.svg" width="100%">
 </picture>
 
 </div>
@@ -17,7 +17,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/whoami-cs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/whoami-cs-light.svg">
-  <img alt="$ ondrej --whoami — Full-stack vývojář a tech lead z Břeclavi, na volné noze od roku 2020. Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání. Jeden odpovědný člověk od prvního hovoru po spuštění. AI je součást nářadí, ne prodejní slogan." src="assets/whoami-cs-dark.svg" width="100%">
+  <img alt="$ ondrej --whoami — Software engineer a tech lead z Břeclavi, na volné noze od roku 2020. Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání. Jeden odpovědný člověk od prvního hovoru po spuštění. AI je součást nářadí, ne prodejní slogan." src="assets/whoami-cs-dark.svg" width="100%">
 </picture>
 
 </div>
@@ -46,15 +46,13 @@
 
 ## ◇ &nbsp;Jak pracuji
 
-```diff
-+ Cena je pevná. Pokud by bylo potřeba rozpočet upravit, dozvíte se to hned — bez vašeho schválení se nic nemění
-+ Když se na ceně nebo postupu nedohodneme, práce nezačne a nic neplatíte
-+ Pravidelné hovory o stavu projektu a ukázky rozpracované práce — jednáme spolu na rovinu
-+ Nejdřív zadání, potom design
-+ Než něco zautomatizuji, změříme to: co šetří, zůstane, co nešetří, vypneme
-+ Obsah spravujete sami, bez čekání na vývojáře
-- Předávání mezi obchodníkem, designérem a vývojářem
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/principles-cs-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/principles-cs-light.svg">
+  <img alt="Pevná cena: změna rozpočtu jen s vaším schválením. Bez dohody se nezačíná a nic neplatíte. Na rovinu: pravidelné hovory a ukázky. Zadání před designem. Změřit, pak automatizovat. Jeden člověk, bez předávání." src="assets/principles-cs-dark.svg" width="100%">
+</picture>
+
+<br>
 
 <details>
 <summary><b>◇ &nbsp;Praxe</b></summary>
