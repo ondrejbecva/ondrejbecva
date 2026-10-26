@@ -53,6 +53,7 @@
 </picture>
 
 <br>
+<br>
 
 <details>
 <summary><b>◇ &nbsp;Experience</b></summary>
@@ -75,6 +76,13 @@ Specialised in WordPress, Laravel and JavaScript frameworks (Vue.js, React), wit
 ## ◇ &nbsp;Find me
 
 <div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/robot-dark.gif">
+  <source media="(prefers-color-scheme: light)" srcset="assets/robot-light.gif">
+  <img alt="The ondrejbecva.cz companion robot waving" src="assets/robot-dark.gif" width="180">
+</picture>
+<br>
 
 <a href="https://www.ondrejbecva.cz"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-en-dark.svg">

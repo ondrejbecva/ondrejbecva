@@ -3,10 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs",
+    "record-robot": "node scripts/record-robot.mjs"
   },
   "devDependencies": {
     "lucide": "0.468.0",
-    "simple-icons": "^16.28.0"
+    "simple-icons": "^16.28.0",
+    "gifenc": "^1.0.3",
+    "pngjs": "^7.0.0",
+    "playwright": "^1.48.0"
   }
 }
