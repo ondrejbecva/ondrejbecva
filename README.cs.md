@@ -84,23 +84,7 @@ Specializuji se na WordPress, Laravel a JavaScriptové frameworky (Vue.js, React
 </picture>
 <br>
 
-<a href="https://www.ondrejbecva.cz"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-cs-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/chip-site-cs-light.svg">
-  <img alt="Web — ondrejbecva.cz" src="assets/chip-site-cs-dark.svg" height="52">
-</picture></a>
-&nbsp;
-<a href="https://www.linkedin.com/in/ondrejbecva/"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/chip-linkedin-cs-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/chip-linkedin-cs-light.svg">
-  <img alt="LinkedIn — Ondřej Bečva" src="assets/chip-linkedin-cs-dark.svg" height="52">
-</picture></a>
-&nbsp;
-<a href="mailto:mail@ondrejbecva.cz"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/chip-email-cs-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/chip-email-cs-light.svg">
-  <img alt="E-mail — mail@ondrejbecva.cz" src="assets/chip-email-cs-dark.svg" height="52">
-</picture></a>
+<a href="https://www.ondrejbecva.cz"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-cs-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-site-cs-light.svg"> <img alt="Web — ondrejbecva.cz" src="assets/chip-site-cs-dark.svg" height="52"> </picture></a> &nbsp; <a href="https://www.linkedin.com/in/ondrejbecva/"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-linkedin-cs-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-linkedin-cs-light.svg"> <img alt="LinkedIn — Ondřej Bečva" src="assets/chip-linkedin-cs-dark.svg" height="52"> </picture></a> &nbsp; <a href="mailto:mail@ondrejbecva.cz"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-email-cs-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-email-cs-light.svg"> <img alt="E-mail — mail@ondrejbecva.cz" src="assets/chip-email-cs-dark.svg" height="52"> </picture></a>
 
 </div>
 
