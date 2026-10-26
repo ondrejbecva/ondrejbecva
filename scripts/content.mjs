@@ -7,17 +7,17 @@ export const TEXT = {
   en: {
     role: 'Software engineer & tech lead',
     place: 'AI in daily practice · Břeclav, Czechia',
-    label: 'Websites · e-shops · apps · AI automation · CRM',
+    label: 'Websites · e-commerce · apps · AI automation · CRM',
     prompt: 'ondrej --whoami',
     whoami: [
       'Software engineer and tech lead from Břeclav. Freelancing since 2020.',
-      'Websites, e-shops, custom apps, CRM and AI automation, built to the brief.',
+      'Websites, e-commerce, custom apps, CRM and AI automation, built to the brief.',
       'One accountable person from the first call to launch. No hand-offs.',
       'AI is part of my toolkit, not a sales slogan. It shortens the routine.',
     ],
     services: [
       { icon: 'Code2', title: 'Custom websites', text: 'Fast, clear sites built to the brief, not a template you work around.' },
-      { icon: 'ShoppingBag', title: 'E-shops', text: 'Shops wired to how you really run: stock, invoicing, carriers. Custom or on Upgates.' },
+      { icon: 'ShoppingBag', title: 'E-commerce', text: 'Online stores wired to how you really run: stock, invoicing, carriers. Custom or on Upgates.' },
       { icon: 'Boxes', title: 'Custom apps', text: 'Internal tools where a spreadsheet or boxed software no longer fits.' },
       { icon: 'Workflow', title: 'AI & automation', text: 'Repetitive work automated, measured first. AI only where it saves time.' },
       { icon: 'Contact', title: 'CRM', text: 'Customer and sales records that follow how the company really works.' },
