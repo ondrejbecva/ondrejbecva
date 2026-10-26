@@ -8,7 +8,7 @@ import { writeFileSync } from 'node:fs'
 import * as lucide from 'lucide'
 import * as simpleIcons from 'simple-icons'
 import { LANGUAGES, STACK, TEXT } from './content.mjs'
-import { MARK, MARK_SIZE } from './mark.mjs'
+import { MARK, MARK_SIZE, WORDMARK, WORDMARK_BOX } from './mark.mjs'
 
 const W = 900
 const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -84,7 +84,8 @@ function hero(text, t) {
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
       beams('hero-beams', 480, 0, W - 480, H, 0.18) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
-      `<text x="182" y="114" font-family="${SANS}" font-size="50" font-weight="700" letter-spacing="-1.6" fill="${t.ink}">Ondřej Bečva</text>` +
+      // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
+      `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
       `<text x="184" y="152" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.place)}</tspan></text>` +
       `<text x="184" y="194" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
     `Ondřej Bečva — ${text.role} · ${text.place}`,
