@@ -60,34 +60,31 @@ const toolMark = (icon, x, y, size, color) => {
 }
 
 /**
- * The thin-wide-thin beams of the site's closing section, at -45°, clipped to the given area. With `breathe`, each
- * beam slowly widens and brightens and settles again on a period of its own, as the beams on ondrejbecva.cz do. It is
- * CSS inside the SVG, which keeps running when GitHub shows the file as an image, and it stops under reduced motion.
+ * The thin-wide-thin beams of the site's closing section, at -45°, clipped to `clip` (an SVG path, so the panel's cut
+ * corner stays cut). With `wave`, a slow glow runs across them from left to right: only their brightness changes, never
+ * their shape or spacing. CSS inside the SVG keeps running when GitHub shows the file as an image; it stops under
+ * reduced motion. (Widening each beam on its own, tried first, made neighbours drift together and apart: "looks weird".)
  */
-const beams = (id, x, y, w, h, opacity, breathe = false) => {
-  // Drawn upright and turned 45° as a group: widening a beam then keeps its angle (scaling a slanted stripe sideways
-  // tilted it, and the beams splayed into wedges). Spacing and widths are the original horizontal ones times sin 45°.
-  const reach = w + h
+const beams = (id, x, y, w, h, clip, opacity, wave = false) => {
   const stripes = []
   let n = 0
-  for (let u = -reach; u < reach; u += 141) {
-    for (const [start, width] of [[0, 4.2], [12.7, 24], [45.3, 2.1]]) {
-      // Periods of 10-18 s and offsets spread by a fixed step, so no two neighbours swell together.
-      const motion = breathe ? ` class="beam" style="animation-duration:${10 + ((n * 5) % 9)}s;animation-delay:-${(n * 1.7) % 13}s"` : ''
-      stripes.push(`<rect${motion} x="${(u + start).toFixed(1)}" y="${-reach}" width="${width}" height="${2 * reach}"/>`)
+  for (let offset = -h; offset < w + h; offset += 200) {
+    for (const [start, width] of [[0, 6], [18, 34], [64, 3]]) {
+      const at = x + offset + start
+      // One period for all; the delay grows with the position, so the glow travels across the beams as a wave.
+      const motion = wave ? ` class="beam" style="animation-delay:${((offset + h) / 200 * 0.9 + start / 200).toFixed(2)}s"` : ''
+      stripes.push(`<path${motion} d="M${at} ${y + h} L${at + h} ${y} H${at + h + width} L${at + width} ${y + h} Z"/>`)
       n++
     }
   }
-  stripes.unshift(`<g transform="translate(${x + w / 2} ${y + h / 2}) rotate(45)">`)
-  stripes.push('</g>')
-  const style = breathe
-    ? `<style>.beam{opacity:.55;transform-box:fill-box;transform-origin:center;animation:breathe ease-in-out infinite}@keyframes breathe{50%{opacity:.85;transform:scaleX(1.5)}}@media (prefers-reduced-motion:reduce){.beam{animation:none}}</style>`
+  const style = wave
+    ? `<style>.beam{opacity:.45;animation:glow 9s ease-in-out infinite}@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}@media (prefers-reduced-motion:reduce){.beam{animation:none;opacity:.7}}</style>`
     : ''
   // Faded in from the left, so the beams have no hard edge where they start.
   return (
     style +
-    `<clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath>` +
-    `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.45" stop-color="#fff"/></linearGradient>` +
+    `<clipPath id="${id}"><path d="${clip}"/></clipPath>` +
+    `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff"/></linearGradient>` +
     `<mask id="${id}-mask"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-fade)"/></mask>` +
     `<g clip-path="url(#${id})" mask="url(#${id}-mask)" fill="${ACCENT}" opacity="${opacity}">${stripes.join('')}</g>`
   )
@@ -99,9 +96,7 @@ function hero(text, t) {
   return svg(
     H,
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
-      // The static strength the owner approved; the motion only adds a slow, small breath (2.6x at full opacity
-      // read as heavy slabs: "beams look weird").
-      beams('hero-beams', 480, 0, W - 480, H, 0.18, true) +
+      beams('hero-beams', 480, 0, W - 480, H, panel(0, 0, W, H, 28), 0.26, true) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
