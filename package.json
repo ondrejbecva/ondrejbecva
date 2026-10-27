@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "record-robot": "node scripts/record-robot.mjs"
+    "record-robot": "node scripts/record-robot.mjs",
+    "preview": "node scripts/preview.mjs"
   },
   "devDependencies": {
     "lucide": "0.468.0",
