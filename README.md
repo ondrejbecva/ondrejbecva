@@ -39,7 +39,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-en-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/stack-en-light.svg">
-  <img alt="Frontend: HTML5, SCSS, JavaScript, TypeScript, React, Next.js, Astro, Three.js, Tailwind CSS, GSAP, Framer Motion, TanStack · Backend &amp; CMS: PHP, Laravel, WordPress, Payload CMS, Node.js, Bun · Databases: MySQL, PostgreSQL, MongoDB, Supabase, SQLite, Redis, Drizzle · Tools &amp; ops: Vite, esbuild, Docker, CI/CD, Git, JetBrains, Cloudflare, Figma, Linux VPS, PostHog · Testing: Playwright, Vitest, Jest, PHPUnit, Pest · AI: Claude, Gemini, ChatGPT, MCP, Agent SDK, prompt evals" src="assets/stack-en-dark.svg" width="100%">
+  <img alt="Frontend: HTML5, SCSS, JavaScript, TypeScript, React, Next.js, Astro, Three.js, Tailwind CSS, GSAP, Framer Motion, TanStack · Backend &amp; CMS: PHP, Laravel, WordPress, Payload CMS, Node.js, Bun · Databases: MySQL, PostgreSQL, MongoDB, Supabase, SQLite, Redis, Drizzle · Tools &amp; ops: Vite, esbuild, Docker, CI/CD, Git, JetBrains, Cloudflare, Figma, pen.dev, Linux VPS, PostHog · Testing: Playwright, Vitest, Jest, PHPUnit, Pest · AI: Claude, Gemini, ChatGPT, MCP, Agent SDK, prompt evals" src="assets/stack-en-dark.svg" width="100%">
 </picture>
 
 <br>
@@ -84,7 +84,7 @@ Specialised in WordPress, Laravel and JavaScript frameworks (Vue.js, React), wit
 </picture>
 <br>
 
-<a href="https://www.ondrejbecva.cz"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-en-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-site-en-light.svg"> <img alt="Website — ondrejbecva.cz" src="assets/chip-site-en-dark.svg" height="52"> </picture></a> &nbsp; <a href="https://www.linkedin.com/in/ondrejbecva/"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-linkedin-en-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-linkedin-en-light.svg"> <img alt="LinkedIn — Ondřej Bečva" src="assets/chip-linkedin-en-dark.svg" height="52"> </picture></a> &nbsp; <a href="mailto:mail@ondrejbecva.cz"><picture> <source media="(prefers-color-scheme: dark)" srcset="assets/chip-email-en-dark.svg"> <source media="(prefers-color-scheme: light)" srcset="assets/chip-email-en-light.svg"> <img alt="E-mail — mail@ondrejbecva.cz" src="assets/chip-email-en-dark.svg" height="52"> </picture></a>
+<a href="https://www.ondrejbecva.cz"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/chip-site-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/chip-site-en-light.svg"><img alt="Website — ondrejbecva.cz" src="assets/chip-site-en-dark.svg" height="52"></picture></a> &nbsp; <a href="https://www.linkedin.com/in/ondrejbecva/"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/chip-linkedin-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/chip-linkedin-en-light.svg"><img alt="LinkedIn — Ondřej Bečva" src="assets/chip-linkedin-en-dark.svg" height="52"></picture></a> &nbsp; <a href="mailto:mail@ondrejbecva.cz"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/chip-email-en-dark.svg"><source media="(prefers-color-scheme: light)" srcset="assets/chip-email-en-light.svg"><img alt="E-mail — mail@ondrejbecva.cz" src="assets/chip-email-en-dark.svg" height="52"></picture></a>
 
 </div>
 

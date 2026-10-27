@@ -67,12 +67,12 @@ export const TEXT = {
 }
 
 // The site's tech stack (ondrejbecva.cz, site global `techStack`). `icon` is a simple-icons slug, or `ai` / `test` for
-// the generic Lucide marks the site uses where no single brand fits.
+// the generic Lucide marks the site uses where no single brand fits (`design`: a pen, for pen.dev).
 export const STACK = [
   { group: 'Frontend', tools: [['HTML5', 'html5'], ['SCSS', 'sass'], ['JavaScript', 'javascript'], ['TypeScript', 'typescript'], ['React', 'react'], ['Next.js', 'nextdotjs'], ['Astro', 'astro'], ['Three.js', 'threedotjs'], ['Tailwind CSS', 'tailwindcss'], ['GSAP', 'gsap'], ['Framer Motion', 'framer'], ['TanStack', 'tanstack']] },
   { group: 'Backend a CMS', tools: [['PHP', 'php'], ['Laravel', 'laravel'], ['WordPress', 'wordpress'], ['Payload CMS', 'payloadcms'], ['Node.js', 'nodedotjs'], ['Bun', 'bun']] },
   { group: 'Databáze', tools: [['MySQL', 'mysql'], ['PostgreSQL', 'postgresql'], ['MongoDB', 'mongodb'], ['Supabase', 'supabase'], ['SQLite', 'sqlite'], ['Redis', 'redis'], ['Drizzle', 'drizzle']] },
-  { group: 'Nástroje a provoz', tools: [['Vite', 'vite'], ['esbuild', 'esbuild'], ['Docker', 'docker'], ['CI/CD', 'githubactions'], ['Git', 'git'], ['JetBrains', 'jetbrains'], ['Cloudflare', 'cloudflare'], ['Figma', 'figma'], ['Linux VPS', 'linux'], ['PostHog', 'posthog']] },
+  { group: 'Nástroje a provoz', tools: [['Vite', 'vite'], ['esbuild', 'esbuild'], ['Docker', 'docker'], ['CI/CD', 'githubactions'], ['Git', 'git'], ['JetBrains', 'jetbrains'], ['Cloudflare', 'cloudflare'], ['Figma', 'figma'], ['pen.dev', 'design'], ['Linux VPS', 'linux'], ['PostHog', 'posthog']] },
   { group: 'Testování', tools: [['Playwright', 'test'], ['Vitest', 'vitest'], ['Jest', 'jest'], ['PHPUnit', 'test'], ['Pest', 'test']] },
   { group: 'AI', tools: [['Claude', 'claude'], ['Gemini', 'googlegemini'], ['ChatGPT', 'ai'], ['MCP', 'modelcontextprotocol'], ['Agent SDK', 'ai'], ['Prompt eval', 'test']] },
 ]
