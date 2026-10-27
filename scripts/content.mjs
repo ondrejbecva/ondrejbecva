@@ -7,11 +7,11 @@ export const TEXT = {
   en: {
     role: 'Software engineer & tech lead',
     place: 'AI in daily practice · Břeclav, Czechia',
-    label: 'Websites · e-commerce · apps · AI automation · CRM',
+    label: 'Websites · e-commerce · apps · AI automation · CRM & ERP',
     prompt: 'ondrej --whoami',
     whoami: [
       'Software engineer and tech lead from Břeclav. Building for the web since 2018.',
-      'Websites, e-commerce, custom apps, CRM and AI automation, built to the brief.',
+      'Websites, e-commerce, custom apps, CRM, ERP and AI automation, to the brief.',
       'One accountable person from the first call to launch. No hand-offs.',
       'AI is part of my toolkit, not a sales slogan. It shortens the routine.',
     ],
@@ -20,7 +20,7 @@ export const TEXT = {
       { icon: 'ShoppingBag', title: 'E-commerce', text: 'Online stores wired to how you really run: stock, invoicing, carriers. Custom or on Upgates.' },
       { icon: 'Boxes', title: 'Custom apps', text: 'Internal tools where a spreadsheet or boxed software no longer fits.' },
       { icon: 'Workflow', title: 'AI & automation', text: 'Repetitive work automated, measured first. AI only where it saves time.' },
-      { icon: 'Contact', title: 'CRM', text: 'Customer and sales records that follow how the company really works.' },
+      { icon: 'Contact', title: 'CRM & ERP', text: 'Customers, sales and operations in one system that follows how the company really works.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Custom themes and plugins, care and maintenance.' },
     ],
     principles: [
@@ -37,11 +37,11 @@ export const TEXT = {
   cs: {
     role: 'Software engineer a tech lead',
     place: 'AI v každodenní praxi · Břeclav',
-    label: 'Weby · e-shopy · aplikace · AI automatizace · CRM',
+    label: 'Weby · e-shopy · aplikace · AI automatizace · CRM a ERP',
     prompt: 'ondrej --whoami',
     whoami: [
       'Software engineer a tech lead z Břeclavi. Weby stavím od roku 2018.',
-      'Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání.',
+      'Weby, e-shopy, aplikace na míru, CRM, ERP a AI automatizace na míru.',
       'Jeden odpovědný člověk od prvního hovoru po spuštění. Bez předávání.',
       'AI je součást mého nářadí, ne prodejní slogan. Zkracuje rutinu.',
     ],
@@ -50,7 +50,7 @@ export const TEXT = {
       { icon: 'ShoppingBag', title: 'E-shopy', text: 'Napojené na váš reálný provoz: sklad, fakturace, dopravci. Na míru i na Upgates.' },
       { icon: 'Boxes', title: 'Aplikace na míru', text: 'Interní nástroje tam, kde tabulka nebo krabicový software už nestačí.' },
       { icon: 'Workflow', title: 'AI a automatizace', text: 'Opakovaná práce zautomatizovaná a změřená. AI jen tam, kde šetří čas.' },
-      { icon: 'Contact', title: 'CRM', text: 'Evidence zákazníků a obchodu podle toho, jak firma opravdu funguje.' },
+      { icon: 'Contact', title: 'CRM a ERP', text: 'Zákazníci, obchod i provoz v jednom systému podle toho, jak firma opravdu funguje.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Šablony a pluginy na míru, správa a údržba.' },
     ],
     principles: [
