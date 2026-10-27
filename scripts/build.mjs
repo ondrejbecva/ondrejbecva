@@ -197,7 +197,7 @@ function stack(text, t) {
         y += chipH + chipGap
       }
       chips.push(
-        `<path d="${panel(x, y, width, chipH, 7)}" fill="${t.card}" stroke="${t.line}"/>` +
+        `<path d="${panel(x, y, width, chipH, 7)}" fill="${t.bg}" stroke="${t.line}"/>` +
           toolMark(icon, x + 12, y + 8, 14, t.ink) +
           `<text x="${x + 34}" y="${y + 19.5}" font-family="${SANS}" font-size="13" font-weight="500" fill="${t.ink}">${escape(name)}</text>`,
       )
@@ -207,7 +207,9 @@ function stack(text, t) {
     y += chipH + 18
   }
   const H = y - 18 + padding
-  return svg(H, `<path d="${panel(0, 0, W, H, 22)}" fill="${t.bg}"/>` + rows.join(''), STACK.map(({ group, tools }) => `${text.groups[group]}: ${tools.map(([name]) => name).join(', ')}`).join(' · '))
+  // The card tone and hairline of every other section (the deep hero tone made this one panel stand out as dark);
+  // the chips take the deep tone instead, so they still read against it.
+  return svg(H, `<path d="${panel(0, 0, W, H, 22)}" fill="${t.card}" stroke="${t.line}"/>` + rows.join(''), STACK.map(({ group, tools }) => `${text.groups[group]}: ${tools.map(([name]) => name).join(', ')}`).join(' · '))
 }
 
 function chip(label, mark, t) {
