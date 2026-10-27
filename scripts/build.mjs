@@ -61,32 +61,46 @@ const toolMark = (icon, x, y, size, color) => {
 
 /**
  * The thin-wide-thin beams of the site's closing section, at -45°, clipped to `clip` (an SVG path, so the panel's cut
- * corner stays cut). With `wave`, a slow glow runs across them from left to right: only their brightness changes, never
- * their shape or spacing. CSS inside the SVG keeps running when GitHub shows the file as an image; it stops under
- * reduced motion. (Widening each beam on its own, tried first, made neighbours drift together and apart: "looks weird".)
+ * corner stays cut). Static.
  */
-const beams = (id, x, y, w, h, clip, opacity, wave = false) => {
+const beams = (id, x, y, w, h, clip, opacity) => {
   const stripes = []
-  let n = 0
   for (let offset = -h; offset < w + h; offset += 200) {
     for (const [start, width] of [[0, 6], [18, 34], [64, 3]]) {
       const at = x + offset + start
-      // One period for all; the delay grows with the position, so the glow travels across the beams as a wave.
-      const motion = wave ? ` class="beam" style="animation-delay:${((offset + h) / 200 * 0.9 + start / 200).toFixed(2)}s"` : ''
-      stripes.push(`<path${motion} d="M${at} ${y + h} L${at + h} ${y} H${at + h + width} L${at + width} ${y + h} Z"/>`)
+      stripes.push(`<path d="M${at} ${y + h} L${at + h} ${y} H${at + h + width} L${at + width} ${y + h} Z"/>`)
+    }
+  }
+  return fadedGroup(id, x, y, w, h, clip, `fill="${ACCENT}" opacity="${opacity}"`, stripes.join(''))
+}
+
+/**
+ * Thin accent lines at -45° that draw themselves in once, one after another from left to right, then rest (owner,
+ * 2026-10-27, picked over still beams, a light sweep and no beams; breathing and glowing beams "looked weird"). The
+ * same entrance as the process drawings on ondrejbecva.cz: stroke-dashoffset on pathLength 1. CSS inside the SVG runs
+ * when GitHub shows it as an image; under reduced motion the lines are simply there.
+ */
+const linesDrawIn = (id, x, y, w, h, clip) => {
+  const lines = []
+  let n = 0
+  for (let offset = -h; offset < w + h; offset += 96) {
+    for (const [start, width, strength] of [[0, 1.2, 0.5], [12, 2.6, 0.35], [32, 1, 0.6]]) {
+      const at = x + offset + start
+      lines.push(`<line class="draw" style="animation-delay:${(0.15 + n * 0.09).toFixed(2)}s" x1="${at}" y1="${y + h}" x2="${at + h}" y2="${y}" stroke-width="${width}" stroke-opacity="${strength}" pathLength="1"/>`)
       n++
     }
   }
-  const style = wave
-    ? `<style>.beam{opacity:.45;animation:glow 9s ease-in-out infinite}@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}@media (prefers-reduced-motion:reduce){.beam{animation:none;opacity:.7}}</style>`
-    : ''
-  // Faded in from the left, so the beams have no hard edge where they start.
+  const style = `<style>.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s cubic-bezier(.22,1,.36,1) forwards}@keyframes draw{to{stroke-dashoffset:0}}@media (prefers-reduced-motion:reduce){.draw{animation:none;stroke-dashoffset:0}}</style>`
+  return style + fadedGroup(id, x, y, w, h, clip, `stroke="${ACCENT}" fill="none"`, lines.join(''))
+}
+
+/** A group clipped to `clip` and faded in from the left of its area, so it has no hard edge where it starts. */
+function fadedGroup(id, x, y, w, h, clip, attributes, content) {
   return (
-    style +
     `<clipPath id="${id}"><path d="${clip}"/></clipPath>` +
     `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff"/></linearGradient>` +
     `<mask id="${id}-mask"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-fade)"/></mask>` +
-    `<g clip-path="url(#${id})" mask="url(#${id}-mask)" fill="${ACCENT}" opacity="${opacity}">${stripes.join('')}</g>`
+    `<g clip-path="url(#${id})" mask="url(#${id}-mask)" ${attributes}>${content}</g>`
   )
 }
 
@@ -96,7 +110,8 @@ function hero(text, t) {
   return svg(
     H,
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
-      beams('hero-beams', 480, 0, W - 480, H, panel(0, 0, W, H, 28), 0.26, true) +
+      // Right of the text block (it ends near x 690), so no line crosses the title or the services line.
+      linesDrawIn('hero-lines', 700, 0, W - 700, H, panel(0, 0, W, H, 28)) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
