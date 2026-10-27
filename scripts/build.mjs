@@ -113,12 +113,13 @@ function hero(text, t) {
       // Right of the text block (it ends near x 690), so no line crosses the title or the services line.
       linesDrawIn('hero-lines', 700, 0, W - 700, H, panel(0, 0, W, H, 28)) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
-      // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
-      `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
-      `<text x="184" y="146" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
+      // The name is the logo's own wordmark, not typed text, 330 units wide. The text block (wordmark top 56 to the
+      // label's baseline 184) is centred on the panel's middle (120), as the mark is (owner: "not vertically centered").
+      `<g transform="translate(184 56) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
+      `<text x="184" y="124" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
       // The places on a line of their own: with the role and AI on one line they ran past the panel's edge.
-      `<text x="184" y="174" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
-      `<text x="184" y="206" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
+      `<text x="184" y="152" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
+      `<text x="184" y="184" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
     `Ondřej Bečva — ${text.role} · ${text.ai} · ${text.place}`,
   )
 }

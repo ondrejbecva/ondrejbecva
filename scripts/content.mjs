@@ -27,14 +27,15 @@ export const TEXT = {
     ],
     experience: {
       heading: 'Experience',
-      // The owner, 2026-10-27: "around 100 projects… creating sites and maintenance work on smaller tasks".
+      // The owner, 2026-10-27: "100+ projects… creating sites and maintenance work on smaller tasks", and "I work from
+      // 2018, not from 2020" (on his own since 2018, alongside the employments).
       stats: [
         { value: '8+', label: 'years building for the web' },
-        { value: '~100', label: 'projects, new builds and maintenance' },
-        { value: '2020', label: 'freelance since' },
+        { value: '100+', label: 'projects, new builds and maintenance' },
+        { value: '2018', label: 'on my own since' },
       ],
       items: [
-        { years: '2020 – now', role: 'Freelance software engineer & tech lead', place: 'Own practice', note: 'Projects from small sites to corporate solutions; leading teams and client work.' },
+        { years: '2018 – now', role: 'Freelance software engineer & tech lead', place: 'Own practice', note: 'Projects from small sites to corporate solutions; leading teams and client work.' },
         { years: '2020 – 2024', role: 'Full-stack developer', place: 'Softmedia', note: '' },
         { years: '2018 – 2020', role: 'Web developer, front-end & back-end', place: 'Adler & Co', note: '' },
         { years: '2018 – 2019', role: 'Front-end developer', place: 'IDEATECH', note: '' },
@@ -76,11 +77,11 @@ export const TEXT = {
       heading: 'Praxe',
       stats: [
         { value: '8+', label: 'let tvořím pro web' },
-        { value: '~100', label: 'projektů, nové weby i údržba' },
-        { value: '2020', label: 'na volné noze od roku' },
+        { value: '100+', label: 'projektů, nové weby i údržba' },
+        { value: '2018', label: 'na volné noze od roku' },
       ],
       items: [
-        { years: '2020 – dnes', role: 'Na volné noze — software engineer a tech lead', place: 'Vlastní praxe', note: 'Projekty od menších webů po korporátní řešení; vedení týmů a spolupráce s klienty.' },
+        { years: '2018 – dnes', role: 'Na volné noze — software engineer a tech lead', place: 'Vlastní praxe', note: 'Projekty od menších webů po korporátní řešení; vedení týmů a spolupráce s klienty.' },
         { years: '2020 – 2024', role: 'Full-stack developer', place: 'Softmedia', note: '' },
         { years: '2018 – 2020', role: 'Webový vývojář pro front-end a back-end', place: 'Adler & Co', note: '' },
         { years: '2018 – 2019', role: 'Webový vývojář pro front-end', place: 'IDEATECH', note: '' },
