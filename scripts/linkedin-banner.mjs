@@ -43,9 +43,9 @@ function banner(text) {
 ${beams(900, W - 900)}
 <g transform="translate(420 96) scale(${markSize / MARK_SIZE.width})" color="${INK}">${MARK}</g>
 <g transform="translate(588 114) scale(${wordmarkWidth / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${INK}">${WORDMARK}</g>
-<text x="590" y="206" font-family="${SANS}" font-size="24" font-weight="500" fill="${INK}">${escape(text.role)}<tspan fill="${MUTED}"> · ${escape(text.place.split(' · ')[0])}</tspan></text>
+<text x="590" y="206" font-family="${SANS}" font-size="24" font-weight="500" fill="${INK}">${escape(text.role)}<tspan fill="${MUTED}"> · ${escape(text.ai)}</tspan></text>
 <text x="590" y="258" font-family="${SANS}" font-size="16" font-weight="700" letter-spacing="2.2" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>
-<text x="590" y="312" font-family="${SANS}" font-size="18" font-weight="500" fill="${MUTED}">ondrejbecva.cz</text>
+<text x="590" y="312" font-family="${SANS}" font-size="18" font-weight="500" fill="${MUTED}">ondrejbecva.cz<tspan> · ${escape(text.place)}</tspan></text>
 <image href="${robot}" x="1262" y="22" width="280" height="360"/>
 </svg>`
 }

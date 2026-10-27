@@ -59,8 +59,11 @@ const toolMark = (icon, x, y, size, color) => {
   return `<path transform="translate(${x} ${y}) scale(${size / 24})" d="${brand.path}" fill="${color}"/>`
 }
 
-/** The thin-wide-thin beams of the site's closing section, at -45°, clipped to the given area. */
-const beams = (id, x, y, w, h, opacity) => {
+/**
+ * The thin-wide-thin beams of the site's closing section, at -45°, clipped to `clip` (an SVG path, so the panel's cut
+ * corner stays cut). Static.
+ */
+const beams = (id, x, y, w, h, clip, opacity) => {
   const stripes = []
   for (let offset = -h; offset < w + h; offset += 200) {
     for (const [start, width] of [[0, 6], [18, 34], [64, 3]]) {
@@ -68,12 +71,36 @@ const beams = (id, x, y, w, h, opacity) => {
       stripes.push(`<path d="M${at} ${y + h} L${at + h} ${y} H${at + h + width} L${at + width} ${y + h} Z"/>`)
     }
   }
-  // Faded in from the left, so the beams have no hard edge where they start.
+  return fadedGroup(id, x, y, w, h, clip, `fill="${ACCENT}" opacity="${opacity}"`, stripes.join(''))
+}
+
+/**
+ * Thin accent lines at -45° that draw themselves in once, one after another from left to right, then rest (owner,
+ * 2026-10-27, picked over still beams, a light sweep and no beams; breathing and glowing beams "looked weird"). The
+ * same entrance as the process drawings on ondrejbecva.cz: stroke-dashoffset on pathLength 1. CSS inside the SVG runs
+ * when GitHub shows it as an image; under reduced motion the lines are simply there.
+ */
+const linesDrawIn = (id, x, y, w, h, clip) => {
+  const lines = []
+  let n = 0
+  for (let offset = -h; offset < w + h; offset += 96) {
+    for (const [start, width, strength] of [[0, 1.2, 0.5], [12, 2.6, 0.35], [32, 1, 0.6]]) {
+      const at = x + offset + start
+      lines.push(`<line class="draw" style="animation-delay:${(0.15 + n * 0.09).toFixed(2)}s" x1="${at}" y1="${y + h}" x2="${at + h}" y2="${y}" stroke-width="${width}" stroke-opacity="${strength}" pathLength="1"/>`)
+      n++
+    }
+  }
+  const style = `<style>.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s cubic-bezier(.22,1,.36,1) forwards}@keyframes draw{to{stroke-dashoffset:0}}@media (prefers-reduced-motion:reduce){.draw{animation:none;stroke-dashoffset:0}}</style>`
+  return style + fadedGroup(id, x, y, w, h, clip, `stroke="${ACCENT}" fill="none"`, lines.join(''))
+}
+
+/** A group clipped to `clip` and faded in from the left of its area, so it has no hard edge where it starts. */
+function fadedGroup(id, x, y, w, h, clip, attributes, content) {
   return (
-    `<clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath>` +
-    `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.45" stop-color="#fff"/></linearGradient>` +
+    `<clipPath id="${id}"><path d="${clip}"/></clipPath>` +
+    `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff"/></linearGradient>` +
     `<mask id="${id}-mask"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-fade)"/></mask>` +
-    `<g clip-path="url(#${id})" mask="url(#${id}-mask)" fill="${ACCENT}" opacity="${opacity}">${stripes.join('')}</g>`
+    `<g clip-path="url(#${id})" mask="url(#${id}-mask)" ${attributes}>${content}</g>`
   )
 }
 
@@ -83,27 +110,35 @@ function hero(text, t) {
   return svg(
     H,
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
-      beams('hero-beams', 480, 0, W - 480, H, 0.18) +
+      // Right of the text block (it ends near x 690), so no line crosses the title or the services line.
+      linesDrawIn('hero-lines', 700, 0, W - 700, H, panel(0, 0, W, H, 28)) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
-      `<text x="184" y="152" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.place)}</tspan></text>` +
-      `<text x="184" y="194" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
-    `Ondřej Bečva — ${text.role} · ${text.place}`,
+      `<text x="184" y="146" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
+      // The places on a line of their own: with the role and AI on one line they ran past the panel's edge.
+      `<text x="184" y="174" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
+      `<text x="184" y="206" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
+    `Ondřej Bečva — ${text.role} · ${text.ai} · ${text.place}`,
   )
 }
 
 function whoami(text, t) {
   const lineHeight = 30
-  const H = 104 + text.whoami.length * lineHeight + 20
+  // One more line for the waiting prompt with its blinking cursor.
+  const H = 104 + (text.whoami.length + 1) * lineHeight + 20
+  const promptY = 120 + text.whoami.length * lineHeight
   const body =
+    `<style>.cursor{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}@media (prefers-reduced-motion:reduce){.cursor{animation:none}}</style>` +
     `<path d="${panel(0, 0, W, H, 22)}" fill="${t.card}" stroke="${t.line}"/>` +
     `<line x1="0" y1="40" x2="${W}" y2="40" stroke="${t.line}"/>` +
     `<circle cx="24" cy="20" r="5" fill="${ACCENT}"/><circle cx="42" cy="20" r="5" fill="none" stroke="${t.muted}"/><circle cx="60" cy="20" r="5" fill="none" stroke="${t.muted}"/>` +
     `<text x="28" y="82" font-family="${MONO}" font-size="15" fill="${t.ink}"><tspan fill="${ACCENT}">$</tspan> ${escape(text.prompt)}</text>` +
     text.whoami
       .map((line, i) => `<text x="28" y="${120 + i * lineHeight}" font-family="${MONO}" font-size="14.5" fill="${t.ink}"><tspan fill="${t.muted}">›</tspan> ${escape(line)}</text>`)
-      .join('')
+      .join('') +
+    `<text x="28" y="${promptY}" font-family="${MONO}" font-size="15" fill="${ACCENT}">$</text>` +
+    `<rect class="cursor" x="46" y="${promptY - 13}" width="9" height="17" fill="${ACCENT}"/>`
   return svg(H, body, `$ ${text.prompt} — ${text.whoami.join(' ')}`)
 }
 
@@ -180,6 +215,24 @@ function chip(label, mark, t) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} 52" width="${width}" height="52" role="img" aria-label="${escape(label)}">${body}</svg>\n`
 }
 
+/**
+ * The language switch: a two-segment pill, the current language filled in the accent. GitHub runs no scripts in a
+ * README, so the whole image links to the other language's README; a click flips it, like a toggle.
+ */
+function languageToggle(active, t) {
+  const width = 120
+  const height = 36
+  const half = width / 2
+  const segment = (x, label, on) =>
+    (on ? `<path d="${panel(x + 3, 3, half - 6, height - 6, 7)}" fill="${ACCENT}"/>` : '') +
+    `<text x="${x + half / 2}" y="23" text-anchor="middle" font-family="${SANS}" font-size="13" font-weight="700" letter-spacing="1" fill="${on ? '#ffffff' : t.muted}">${label}</text>`
+  const body =
+    `<path d="${panel(0.5, 0.5, width - 1, height - 1, 10)}" fill="${t.card}" stroke="${t.line}"/>` +
+    segment(0, 'EN', active === 'en') +
+    segment(half, 'CZ', active === 'cs')
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${active === 'en' ? 'English · switch to Czech' : 'Čeština · přepnout do angličtiny'}">${body}</svg>\n`
+}
+
 let written = 0
 const write = (name, content) => {
   writeFileSync(new URL(`../assets/${name}`, import.meta.url), content)
@@ -194,6 +247,7 @@ for (const language of LANGUAGES) {
     write(`services-${suffix}`, services(text, t))
     write(`principles-${suffix}`, principles(text, t))
     write(`stack-${suffix}`, stack(text, t))
+    write(`toggle-${suffix}`, languageToggle(language, t))
     write(`chip-site-${suffix}`, chip(text.chips.site, (x, y, s) => lucideIcon('Globe', x, y, s, ACCENT), t))
     write(`chip-linkedin-${suffix}`, chip(text.chips.linkedin, (x, y, s) => lucideIcon('Linkedin', x, y, s, ACCENT), t))
     write(`chip-email-${suffix}`, chip(text.chips.email, (x, y, s) => lucideIcon('Mail', x, y, s, ACCENT), t))
