@@ -72,8 +72,8 @@ const beams = (id, x, y, w, h, opacity, breathe = false) => {
   let n = 0
   for (let u = -reach; u < reach; u += 141) {
     for (const [start, width] of [[0, 4.2], [12.7, 24], [45.3, 2.1]]) {
-      // Periods of 7-15 s and offsets spread by a fixed step, so no two neighbours swell together.
-      const motion = breathe ? ` class="beam" style="animation-duration:${7 + ((n * 5) % 9)}s;animation-delay:-${(n * 1.7) % 11}s"` : ''
+      // Periods of 10-18 s and offsets spread by a fixed step, so no two neighbours swell together.
+      const motion = breathe ? ` class="beam" style="animation-duration:${10 + ((n * 5) % 9)}s;animation-delay:-${(n * 1.7) % 13}s"` : ''
       stripes.push(`<rect${motion} x="${(u + start).toFixed(1)}" y="${-reach}" width="${width}" height="${2 * reach}"/>`)
       n++
     }
@@ -81,7 +81,7 @@ const beams = (id, x, y, w, h, opacity, breathe = false) => {
   stripes.unshift(`<g transform="translate(${x + w / 2} ${y + h / 2}) rotate(45)">`)
   stripes.push('</g>')
   const style = breathe
-    ? `<style>.beam{opacity:.5;transform-box:fill-box;transform-origin:center;animation:breathe ease-in-out infinite}@keyframes breathe{50%{opacity:1;transform:scaleX(2.6)}}@media (prefers-reduced-motion:reduce){.beam{animation:none}}</style>`
+    ? `<style>.beam{opacity:.55;transform-box:fill-box;transform-origin:center;animation:breathe ease-in-out infinite}@keyframes breathe{50%{opacity:.85;transform:scaleX(1.5)}}@media (prefers-reduced-motion:reduce){.beam{animation:none}}</style>`
     : ''
   // Faded in from the left, so the beams have no hard edge where they start.
   return (
@@ -99,7 +99,9 @@ function hero(text, t) {
   return svg(
     H,
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
-      beams('hero-beams', 480, 0, W - 480, H, 0.24, true) +
+      // The static strength the owner approved; the motion only adds a slow, small breath (2.6x at full opacity
+      // read as heavy slabs: "beams look weird").
+      beams('hero-beams', 480, 0, W - 480, H, 0.18, true) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
