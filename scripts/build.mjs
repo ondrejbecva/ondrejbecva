@@ -87,9 +87,11 @@ function hero(text, t) {
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
-      `<text x="184" y="152" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.place)}</tspan></text>` +
-      `<text x="184" y="194" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
-    `Ondřej Bečva — ${text.role} · ${text.place}`,
+      `<text x="184" y="146" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
+      // The places on a line of their own: with the role and AI on one line they ran past the panel's edge.
+      `<text x="184" y="174" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
+      `<text x="184" y="206" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
+    `Ondřej Bečva — ${text.role} · ${text.ai} · ${text.place}`,
   )
 }
 
