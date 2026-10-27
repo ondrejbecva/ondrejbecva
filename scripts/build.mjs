@@ -59,17 +59,33 @@ const toolMark = (icon, x, y, size, color) => {
   return `<path transform="translate(${x} ${y}) scale(${size / 24})" d="${brand.path}" fill="${color}"/>`
 }
 
-/** The thin-wide-thin beams of the site's closing section, at -45°, clipped to the given area. */
-const beams = (id, x, y, w, h, opacity) => {
+/**
+ * The thin-wide-thin beams of the site's closing section, at -45°, clipped to the given area. With `breathe`, each
+ * beam slowly widens and brightens and settles again on a period of its own, as the beams on ondrejbecva.cz do. It is
+ * CSS inside the SVG, which keeps running when GitHub shows the file as an image, and it stops under reduced motion.
+ */
+const beams = (id, x, y, w, h, opacity, breathe = false) => {
+  // Drawn upright and turned 45° as a group: widening a beam then keeps its angle (scaling a slanted stripe sideways
+  // tilted it, and the beams splayed into wedges). Spacing and widths are the original horizontal ones times sin 45°.
+  const reach = w + h
   const stripes = []
-  for (let offset = -h; offset < w + h; offset += 200) {
-    for (const [start, width] of [[0, 6], [18, 34], [64, 3]]) {
-      const at = x + offset + start
-      stripes.push(`<path d="M${at} ${y + h} L${at + h} ${y} H${at + h + width} L${at + width} ${y + h} Z"/>`)
+  let n = 0
+  for (let u = -reach; u < reach; u += 141) {
+    for (const [start, width] of [[0, 4.2], [12.7, 24], [45.3, 2.1]]) {
+      // Periods of 7-15 s and offsets spread by a fixed step, so no two neighbours swell together.
+      const motion = breathe ? ` class="beam" style="animation-duration:${7 + ((n * 5) % 9)}s;animation-delay:-${(n * 1.7) % 11}s"` : ''
+      stripes.push(`<rect${motion} x="${(u + start).toFixed(1)}" y="${-reach}" width="${width}" height="${2 * reach}"/>`)
+      n++
     }
   }
+  stripes.unshift(`<g transform="translate(${x + w / 2} ${y + h / 2}) rotate(45)">`)
+  stripes.push('</g>')
+  const style = breathe
+    ? `<style>.beam{opacity:.5;transform-box:fill-box;transform-origin:center;animation:breathe ease-in-out infinite}@keyframes breathe{50%{opacity:1;transform:scaleX(2.6)}}@media (prefers-reduced-motion:reduce){.beam{animation:none}}</style>`
+    : ''
   // Faded in from the left, so the beams have no hard edge where they start.
   return (
+    style +
     `<clipPath id="${id}"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath>` +
     `<linearGradient id="${id}-fade" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.45" stop-color="#fff"/></linearGradient>` +
     `<mask id="${id}-mask"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-fade)"/></mask>` +
@@ -83,7 +99,7 @@ function hero(text, t) {
   return svg(
     H,
     `<path d="${panel(0, 0, W, H, 28)}" fill="${t.bg}"/>` +
-      beams('hero-beams', 480, 0, W - 480, H, 0.18) +
+      beams('hero-beams', 480, 0, W - 480, H, 0.24, true) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
       // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
       `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
@@ -97,15 +113,20 @@ function hero(text, t) {
 
 function whoami(text, t) {
   const lineHeight = 30
-  const H = 104 + text.whoami.length * lineHeight + 20
+  // One more line for the waiting prompt with its blinking cursor.
+  const H = 104 + (text.whoami.length + 1) * lineHeight + 20
+  const promptY = 120 + text.whoami.length * lineHeight
   const body =
+    `<style>.cursor{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}@media (prefers-reduced-motion:reduce){.cursor{animation:none}}</style>` +
     `<path d="${panel(0, 0, W, H, 22)}" fill="${t.card}" stroke="${t.line}"/>` +
     `<line x1="0" y1="40" x2="${W}" y2="40" stroke="${t.line}"/>` +
     `<circle cx="24" cy="20" r="5" fill="${ACCENT}"/><circle cx="42" cy="20" r="5" fill="none" stroke="${t.muted}"/><circle cx="60" cy="20" r="5" fill="none" stroke="${t.muted}"/>` +
     `<text x="28" y="82" font-family="${MONO}" font-size="15" fill="${t.ink}"><tspan fill="${ACCENT}">$</tspan> ${escape(text.prompt)}</text>` +
     text.whoami
       .map((line, i) => `<text x="28" y="${120 + i * lineHeight}" font-family="${MONO}" font-size="14.5" fill="${t.ink}"><tspan fill="${t.muted}">›</tspan> ${escape(line)}</text>`)
-      .join('')
+      .join('') +
+    `<text x="28" y="${promptY}" font-family="${MONO}" font-size="15" fill="${ACCENT}">$</text>` +
+    `<rect class="cursor" x="46" y="${promptY - 13}" width="9" height="17" fill="${ACCENT}"/>`
   return svg(H, body, `$ ${text.prompt} — ${text.whoami.join(' ')}`)
 }
 
@@ -182,6 +203,24 @@ function chip(label, mark, t) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} 52" width="${width}" height="52" role="img" aria-label="${escape(label)}">${body}</svg>\n`
 }
 
+/**
+ * The language switch: a two-segment pill, the current language filled in the accent. GitHub runs no scripts in a
+ * README, so the whole image links to the other language's README; a click flips it, like a toggle.
+ */
+function languageToggle(active, t) {
+  const width = 120
+  const height = 36
+  const half = width / 2
+  const segment = (x, label, on) =>
+    (on ? `<path d="${panel(x + 3, 3, half - 6, height - 6, 7)}" fill="${ACCENT}"/>` : '') +
+    `<text x="${x + half / 2}" y="23" text-anchor="middle" font-family="${SANS}" font-size="13" font-weight="700" letter-spacing="1" fill="${on ? '#ffffff' : t.muted}">${label}</text>`
+  const body =
+    `<path d="${panel(0.5, 0.5, width - 1, height - 1, 10)}" fill="${t.card}" stroke="${t.line}"/>` +
+    segment(0, 'EN', active === 'en') +
+    segment(half, 'CZ', active === 'cs')
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${active === 'en' ? 'English · switch to Czech' : 'Čeština · přepnout do angličtiny'}">${body}</svg>\n`
+}
+
 let written = 0
 const write = (name, content) => {
   writeFileSync(new URL(`../assets/${name}`, import.meta.url), content)
@@ -196,6 +235,7 @@ for (const language of LANGUAGES) {
     write(`services-${suffix}`, services(text, t))
     write(`principles-${suffix}`, principles(text, t))
     write(`stack-${suffix}`, stack(text, t))
+    write(`toggle-${suffix}`, languageToggle(language, t))
     write(`chip-site-${suffix}`, chip(text.chips.site, (x, y, s) => lucideIcon('Globe', x, y, s, ACCENT), t))
     write(`chip-linkedin-${suffix}`, chip(text.chips.linkedin, (x, y, s) => lucideIcon('Linkedin', x, y, s, ACCENT), t))
     write(`chip-email-${suffix}`, chip(text.chips.email, (x, y, s) => lucideIcon('Mail', x, y, s, ACCENT), t))
