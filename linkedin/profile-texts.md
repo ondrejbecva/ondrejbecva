@@ -14,7 +14,7 @@ Software engineer a tech lead · Weby, e-shopy, aplikace na míru, CRM, ERP a AI
 
 **Info:**
 
-Jsem software engineer a tech lead z Břeclavi. Pracuji v Břeclavi, Brně, Praze i na dálku pro klienty z celého světa. Weby stavím od roku 2018, od roku 2020 na volné noze. Stavím weby, e-shopy, aplikace na míru, CRM, ERP a AI automatizace — na míru zadání, ne podle šablony.
+Jsem software engineer a tech lead z Břeclavi. Pracuji v Břeclavi, Brně, Praze i na dálku pro klienty z celého světa. Weby stavím a na volné noze jsem od roku 2018. Za sebou mám přes 100 projektů — nové weby, e-shopy a aplikace i dlouhodobou údržbu a menší úpravy. Stavím weby, e-shopy, aplikace na míru, CRM, ERP a AI automatizace — na míru zadání, ne podle šablony.
 
 Projekt vedu osobně od prvního hovoru po spuštění. Mluvíte s tím, kdo ho staví, bez předávání mezi obchodníkem, designérem a vývojářem. Podle rozsahu zapojuji partnery, za jejichž práci se dokážu zaručit.
 
@@ -36,7 +36,7 @@ Software engineer & tech lead · Websites, e-commerce, custom apps, CRM, ERP and
 
 **About:**
 
-I'm a software engineer and tech lead from Břeclav, Czechia, working in Břeclav, Brno and Prague and remotely for clients worldwide. I've been building for the web since 2018, freelance since 2020. I build websites, e-commerce, custom apps, CRM, ERP and AI automation — to the brief, not to a template.
+I'm a software engineer and tech lead from Břeclav, Czechia, working in Břeclav, Brno and Prague and remotely for clients worldwide. I've been building for the web and working on my own since 2018, with 100+ projects behind me — new websites, e-commerce and apps as well as ongoing maintenance and smaller tasks. I build websites, e-commerce, custom apps, CRM, ERP and AI automation — to the brief, not to a template.
 
 I lead every project myself, from the first call to launch. You talk to the person who builds it, with no hand-offs between salesperson, designer and developer. For larger work I bring in partners whose work I can vouch for.
 

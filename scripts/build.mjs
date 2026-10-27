@@ -113,12 +113,13 @@ function hero(text, t) {
       // Right of the text block (it ends near x 690), so no line crosses the title or the services line.
       linesDrawIn('hero-lines', 700, 0, W - 700, H, panel(0, 0, W, H, 28)) +
       `<g transform="translate(44 66) scale(${markScale})" color="${t.ink}">${MARK}</g>` +
-      // The name is the logo's own wordmark, not typed text: 330 units wide, its baseline where the text's was.
-      `<g transform="translate(184 78) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
-      `<text x="184" y="146" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
+      // The name is the logo's own wordmark, not typed text, 330 units wide. The text block (wordmark top 56 to the
+      // label's baseline 184) is centred on the panel's middle (120), as the mark is (owner: "not vertically centered").
+      `<g transform="translate(184 56) scale(${330 / WORDMARK_BOX.width}) translate(${-WORDMARK_BOX.x} ${-WORDMARK_BOX.y})" color="${t.ink}">${WORDMARK}</g>` +
+      `<text x="184" y="124" font-family="${SANS}" font-size="20" font-weight="500" fill="${t.ink}">${escape(text.role)}<tspan fill="${t.muted}"> · ${escape(text.ai)}</tspan></text>` +
       // The places on a line of their own: with the role and AI on one line they ran past the panel's edge.
-      `<text x="184" y="174" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
-      `<text x="184" y="206" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
+      `<text x="184" y="152" font-family="${SANS}" font-size="15" font-weight="500" fill="${t.muted}">${escape(text.place)}</text>` +
+      `<text x="184" y="184" font-family="${SANS}" font-size="12.5" font-weight="600" letter-spacing="1.6" fill="${ACCENT}">◇  ${escape(text.label.toUpperCase())}</text>`,
     `Ondřej Bečva — ${text.role} · ${text.ai} · ${text.place}`,
   )
 }
@@ -196,7 +197,7 @@ function stack(text, t) {
         y += chipH + chipGap
       }
       chips.push(
-        `<path d="${panel(x, y, width, chipH, 7)}" fill="${t.card}" stroke="${t.line}"/>` +
+        `<path d="${panel(x, y, width, chipH, 7)}" fill="${t.bg}" stroke="${t.line}"/>` +
           toolMark(icon, x + 12, y + 8, 14, t.ink) +
           `<text x="${x + 34}" y="${y + 19.5}" font-family="${SANS}" font-size="13" font-weight="500" fill="${t.ink}">${escape(name)}</text>`,
       )
@@ -206,13 +207,63 @@ function stack(text, t) {
     y += chipH + 18
   }
   const H = y - 18 + padding
-  return svg(H, `<path d="${panel(0, 0, W, H, 22)}" fill="${t.bg}"/>` + rows.join(''), STACK.map(({ group, tools }) => `${text.groups[group]}: ${tools.map(([name]) => name).join(', ')}`).join(' · '))
+  // The card tone and hairline of every other section (the deep hero tone made this one panel stand out as dark);
+  // the chips take the deep tone instead, so they still read against it.
+  return svg(H, `<path d="${panel(0, 0, W, H, 22)}" fill="${t.card}" stroke="${t.line}"/>` + rows.join(''), STACK.map(({ group, tools }) => `${text.groups[group]}: ${tools.map(([name]) => name).join(', ')}`).join(' · '))
 }
 
 function chip(label, mark, t) {
   const width = Math.round(20 + 18 + 12 + textWidth(label, 15) + 22)
   const body = `<path d="${panel(1, 1, width - 2, 50, 10)}" fill="${t.card}" stroke="${t.line}"/>` + mark(20, 17, 18) + `<text x="50" y="31" font-family="${SANS}" font-size="15" font-weight="600" fill="${t.ink}">${escape(label)}</text>`
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} 52" width="${width}" height="52" role="img" aria-label="${escape(label)}">${body}</svg>\n`
+}
+
+/**
+ * The work history as a timeline: the years in the accent on the left, a rail with a diamond per role (the current one
+ * filled), the role and the company, and an optional line under it. The specialisation closes the panel.
+ */
+function experience(text, t) {
+  const { items, note, stats } = text.experience
+  // The figures first, in three columns over a hairline; the timeline below them.
+  const statWidth = (W - 64) / stats.length
+  const figures = stats
+    .map((stat, i) => {
+      const x = 32 + i * statWidth
+      return (
+        (i ? `<line x1="${x - 16}" y1="30" x2="${x - 16}" y2="92" stroke="${t.line}"/>` : '') +
+        `<text x="${x}" y="68" font-family="${SANS}" font-size="38" font-weight="700" letter-spacing="-1" fill="${t.ink}">${escape(stat.value)}</text>` +
+        `<text x="${x}" y="92" font-family="${SANS}" font-size="13.5" fill="${t.muted}">${escape(stat.label)}</text>`
+      )
+    })
+    .join('')
+  const top = 150
+  const rowH = (item) => (item.note ? 84 : 62)
+  let y = top
+  const rows = items.map((item, i) => {
+    const rowTop = y
+    y += rowH(item)
+    const current = i === 0
+    const diamond = `<path transform="translate(186 ${rowTop + 2}) scale(1.4)" fill-rule="evenodd" fill="${current ? ACCENT : t.card}" stroke="${ACCENT}" stroke-width="${current ? 0 : 1.2}" d="${current ? 'M6 0l6 6-6 6-6-6 6-6zm0 3.4L2.6 6 6 8.6 9.4 6 6 3.4z' : 'M6 0.8l5.2 5.2-5.2 5.2-5.2-5.2z'}"/>`
+    return (
+      `<text x="32" y="${rowTop + 15}" font-family="${MONO}" font-size="13.5" fill="${current ? ACCENT : t.muted}">${escape(item.years)}</text>` +
+      diamond +
+      `<text x="226" y="${rowTop + 15}" font-family="${SANS}" font-size="16.5" font-weight="700" fill="${t.ink}">${escape(item.role)}</text>` +
+      `<text x="226" y="${rowTop + 38}" font-family="${SANS}" font-size="14" font-weight="500" fill="${t.muted}">${escape(item.place)}</text>` +
+      (item.note ? `<text x="226" y="${rowTop + 60}" font-family="${SANS}" font-size="13.5" fill="${t.muted}">${escape(item.note)}</text>` : '')
+    )
+  })
+  const railTop = top + 10
+  const railBottom = y - rowH(items.at(-1)) + 10
+  const H = y + 54
+  const body =
+    `<path d="${panel(0, 0, W, H, 22)}" fill="${t.card}" stroke="${t.line}"/>` +
+    figures +
+    `<line x1="32" y1="118" x2="${W - 32}" y2="118" stroke="${t.line}"/>` +
+    `<line x1="194.4" y1="${railTop}" x2="194.4" y2="${railBottom}" stroke="${t.line}" stroke-width="1.5"/>` +
+    rows.join('') +
+    `<line x1="32" y1="${y + 4}" x2="${W - 32}" y2="${y + 4}" stroke="${t.line}"/>` +
+    `<text x="32" y="${y + 32}" font-family="${SANS}" font-size="14" fill="${t.muted}">${escape(note)}</text>`
+  return svg(H, body, stats.map((stat) => `${stat.value} ${stat.label}`).join(' · ') + '. ' + items.map((item) => `${item.years}: ${item.role}, ${item.place}`).join(' · ') + '. ' + note)
 }
 
 /**
@@ -246,6 +297,7 @@ for (const language of LANGUAGES) {
     write(`whoami-${suffix}`, whoami(text, t))
     write(`services-${suffix}`, services(text, t))
     write(`principles-${suffix}`, principles(text, t))
+    write(`experience-${suffix}`, experience(text, t))
     write(`stack-${suffix}`, stack(text, t))
     write(`toggle-${suffix}`, languageToggle(language, t))
     write(`chip-site-${suffix}`, chip(text.chips.site, (x, y, s) => lucideIcon('Globe', x, y, s, ACCENT), t))

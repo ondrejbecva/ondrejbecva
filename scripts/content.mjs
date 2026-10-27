@@ -25,6 +25,23 @@ export const TEXT = {
       { icon: 'Contact', title: 'CRM & ERP', text: 'Customers, sales and operations in one system that follows how the company really works.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Custom themes and plugins, care and maintenance.' },
     ],
+    experience: {
+      heading: 'Experience',
+      // The owner, 2026-10-27: "100+ projects… creating sites and maintenance work on smaller tasks", and "I work from
+      // 2018, not from 2020" (on his own since 2018, alongside the employments).
+      stats: [
+        { value: '8+', label: 'years building for the web' },
+        { value: '100+', label: 'projects delivered and maintained' },
+        { value: '2018', label: 'on my own since' },
+      ],
+      items: [
+        { years: '2018 – now', role: 'Freelance software engineer & tech lead', place: 'Own practice', note: 'Projects from small sites to corporate solutions; leading teams and client work.' },
+        { years: '2020 – 2024', role: 'Full-stack developer', place: 'Softmedia', note: '' },
+        { years: '2018 – 2020', role: 'Web developer, front-end & back-end', place: 'Adler & Co', note: '' },
+        { years: '2018 – 2019', role: 'Front-end developer', place: 'IDEATECH', note: '' },
+      ],
+      note: 'Specialised in WordPress, Laravel and JavaScript frameworks (Vue.js, React), with AI in everyday work.',
+    },
     principles: [
       { title: 'Fixed price', text: 'If the budget has to change, you hear it at once. Nothing changes without your approval.' },
       { title: 'No agreement, no start', text: 'If we do not agree on price or approach, work does not start and you pay nothing.' },
@@ -56,6 +73,21 @@ export const TEXT = {
       { icon: 'Contact', title: 'CRM a ERP', text: 'Zákazníci, obchod i provoz v jednom systému podle toho, jak firma opravdu funguje.' },
       { icon: 'LayoutTemplate', title: 'WordPress', text: 'Šablony a pluginy na míru, správa a údržba.' },
     ],
+    experience: {
+      heading: 'Praxe',
+      stats: [
+        { value: '8+', label: 'let tvořím pro web' },
+        { value: '100+', label: 'dokončených a spravovaných projektů' },
+        { value: '2018', label: 'na volné noze od roku' },
+      ],
+      items: [
+        { years: '2018 – dnes', role: 'Na volné noze — software engineer a tech lead', place: 'Vlastní praxe', note: 'Projekty od menších webů po korporátní řešení; vedení týmů a spolupráce s klienty.' },
+        { years: '2020 – 2024', role: 'Full-stack developer', place: 'Softmedia', note: '' },
+        { years: '2018 – 2020', role: 'Webový vývojář pro front-end a back-end', place: 'Adler & Co', note: '' },
+        { years: '2018 – 2019', role: 'Webový vývojář pro front-end', place: 'IDEATECH', note: '' },
+      ],
+      note: 'Specializuji se na WordPress, Laravel a JavaScriptové frameworky (Vue.js, React), při práci aktivně využívám AI.',
+    },
     principles: [
       { title: 'Pevná cena', text: 'Pokud by bylo potřeba rozpočet upravit, dozvíte se to hned. Bez vašeho schválení se nic nemění.' },
       { title: 'Bez dohody se nezačíná', text: 'Když se na ceně nebo postupu nedohodneme, práce nezačne a nic neplatíte.' },
