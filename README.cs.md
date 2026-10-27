@@ -17,7 +17,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/whoami-cs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/whoami-cs-light.svg">
-  <img alt="$ ondrej --whoami — Software engineer a tech lead z Břeclavi, na volné noze od roku 2020. Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání. Jeden odpovědný člověk od prvního hovoru po spuštění. AI je součást nářadí, ne prodejní slogan." src="assets/whoami-cs-dark.svg" width="100%">
+  <img alt="$ ondrej --whoami — Software engineer a tech lead z Břeclavi, weby stavím od roku 2018. Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání. Jeden odpovědný člověk od prvního hovoru po spuštění. AI je součást nářadí, ne prodejní slogan." src="assets/whoami-cs-dark.svg" width="100%">
 </picture>
 
 </div>

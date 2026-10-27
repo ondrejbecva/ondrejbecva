@@ -10,7 +10,7 @@ export const TEXT = {
     label: 'Websites · e-commerce · apps · AI automation · CRM',
     prompt: 'ondrej --whoami',
     whoami: [
-      'Software engineer and tech lead from Břeclav. Freelancing since 2020.',
+      'Software engineer and tech lead from Břeclav. Building for the web since 2018.',
       'Websites, e-commerce, custom apps, CRM and AI automation, built to the brief.',
       'One accountable person from the first call to launch. No hand-offs.',
       'AI is part of my toolkit, not a sales slogan. It shortens the routine.',
@@ -40,7 +40,7 @@ export const TEXT = {
     label: 'Weby · e-shopy · aplikace · AI automatizace · CRM',
     prompt: 'ondrej --whoami',
     whoami: [
-      'Software engineer a tech lead z Břeclavi. Na volné noze od roku 2020.',
+      'Software engineer a tech lead z Břeclavi. Weby stavím od roku 2018.',
       'Weby, e-shopy, aplikace na míru, CRM a AI automatizace na míru zadání.',
       'Jeden odpovědný člověk od prvního hovoru po spuštění. Bez předávání.',
       'AI je součást mého nářadí, ne prodejní slogan. Zkracuje rutinu.',
