@@ -48,10 +48,11 @@ const lucideIcon = (name, x, y, size, color) => {
   return `<g transform="translate(${x} ${y}) scale(${size / 24})" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${children}</g>`
 }
 
-/** A tool's mark: its simple-icons logo, or the generic sparkle (AI) or flask (testing), in one colour. */
+/** A tool's mark: its simple-icons logo, or the generic sparkle (AI), flask (testing) or pen (design), in one colour. */
 const toolMark = (icon, x, y, size, color) => {
   if (icon === 'ai') return lucideIcon('Sparkles', x, y, size, color)
   if (icon === 'test') return lucideIcon('FlaskConical', x, y, size, color)
+  if (icon === 'design') return lucideIcon('PenTool', x, y, size, color)
   const key = `si${icon[0].toUpperCase()}${icon.slice(1)}`
   const brand = simpleIcons[key]
   if (!brand) throw new Error(`simple-icons has no "${icon}" (${key})`)

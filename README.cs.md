@@ -39,7 +39,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stack-cs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/stack-cs-light.svg">
-  <img alt="Frontend: HTML5, SCSS, JavaScript, TypeScript, React, Next.js, Astro, Three.js, Tailwind CSS, GSAP, Framer Motion, TanStack · Backend a CMS: PHP, Laravel, WordPress, Payload CMS, Node.js, Bun · Databáze: MySQL, PostgreSQL, MongoDB, Supabase, SQLite, Redis, Drizzle · Nástroje a provoz: Vite, esbuild, Docker, CI/CD, Git, JetBrains, Cloudflare, Figma, Linux VPS, PostHog · Testování: Playwright, Vitest, Jest, PHPUnit, Pest · AI: Claude, Gemini, ChatGPT, MCP, Agent SDK, prompt eval" src="assets/stack-cs-dark.svg" width="100%">
+  <img alt="Frontend: HTML5, SCSS, JavaScript, TypeScript, React, Next.js, Astro, Three.js, Tailwind CSS, GSAP, Framer Motion, TanStack · Backend a CMS: PHP, Laravel, WordPress, Payload CMS, Node.js, Bun · Databáze: MySQL, PostgreSQL, MongoDB, Supabase, SQLite, Redis, Drizzle · Nástroje a provoz: Vite, esbuild, Docker, CI/CD, Git, JetBrains, Cloudflare, Figma, pen.dev, Linux VPS, PostHog · Testování: Playwright, Vitest, Jest, PHPUnit, Pest · AI: Claude, Gemini, ChatGPT, MCP, Agent SDK, prompt eval" src="assets/stack-cs-dark.svg" width="100%">
 </picture>
 
 <br>
