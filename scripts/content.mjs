@@ -31,7 +31,7 @@ export const TEXT = {
       // 2018, not from 2020" (on his own since 2018, alongside the employments).
       stats: [
         { value: '8+', label: 'years building for the web' },
-        { value: '100+', label: 'projects, new builds and maintenance' },
+        { value: '100+', label: 'projects delivered and maintained' },
         { value: '2018', label: 'on my own since' },
       ],
       items: [
@@ -77,7 +77,7 @@ export const TEXT = {
       heading: 'Praxe',
       stats: [
         { value: '8+', label: 'let tvořím pro web' },
-        { value: '100+', label: 'projektů, nové weby i údržba' },
+        { value: '100+', label: 'dokončených a spravovaných projektů' },
         { value: '2018', label: 'na volné noze od roku' },
       ],
       items: [
