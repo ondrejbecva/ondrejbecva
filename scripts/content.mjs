@@ -6,7 +6,9 @@ export const LANGUAGES = ['en', 'cs']
 export const TEXT = {
   en: {
     role: 'Software engineer & tech lead',
-    place: 'AI in daily practice · Břeclav, Czechia',
+    ai: 'AI in daily practice',
+    // Where the owner works (2026-10-27): "Břeclav/Brno/Prague and the whole world".
+    place: 'Břeclav · Brno · Prague · remote worldwide',
     label: 'Websites · e-commerce · apps · AI automation · CRM & ERP',
     prompt: 'ondrej --whoami',
     whoami: [
@@ -36,7 +38,8 @@ export const TEXT = {
   },
   cs: {
     role: 'Software engineer a tech lead',
-    place: 'AI v každodenní praxi · Břeclav',
+    ai: 'AI v každodenní praxi',
+    place: 'Břeclav · Brno · Praha · i na dálku po celém světě',
     label: 'Weby · e-shopy · aplikace · AI automatizace · CRM a ERP',
     prompt: 'ondrej --whoami',
     whoami: [
