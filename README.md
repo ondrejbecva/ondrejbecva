@@ -17,7 +17,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/whoami-en-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/whoami-en-light.svg">
-  <img alt="$ ondrej --whoami — Software engineer and tech lead from Břeclav, building for the web since 2018. Websites, e-commerce, custom apps, CRM and AI automation, built to the brief. One accountable person from the first call to launch. AI is part of the toolkit, not a sales slogan." src="assets/whoami-en-dark.svg" width="100%">
+  <img alt="$ ondrej --whoami — Software engineer and tech lead from Břeclav, building for the web since 2018. Websites, e-commerce, custom apps, CRM, ERP and AI automation, built to the brief. One accountable person from the first call to launch. AI is part of the toolkit, not a sales slogan." src="assets/whoami-en-dark.svg" width="100%">
 </picture>
 
 </div>
@@ -29,7 +29,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/services-en-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/services-en-light.svg">
-  <img alt="Custom websites, e-commerce (custom or on Upgates), custom apps, AI and automation, CRM, WordPress." src="assets/services-en-dark.svg" width="100%">
+  <img alt="Custom websites, e-commerce (custom or on Upgates), custom apps, AI and automation, CRM and ERP, WordPress." src="assets/services-en-dark.svg" width="100%">
 </picture>
 
 <br>
